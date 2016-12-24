@@ -1,13 +1,26 @@
 {{#mcim-struc}}
-  <div class="spc-bottom-2">
-    <h1 class="text-center">8 + 12 =</h1>
-  </div>
-  <div class="spc-bottom-2 text-indent-3">
-    <input type="text" name="game-answer" class="form-control input-lg" autofocus>
-  </div>
-  <div class="text-center">
-    {{#link-to 'index' classNames="btn btn-success btn-block"}}
-      Submit
-    {{/link-to}}
-  </div>
+  <form>
+    <div class="spc-bottom-2">
+      <h1 class="font-size-7 text-center">
+        {{equation.operator_one}}
+        {{equation.operation}}
+        {{equation.operator_two}}
+        =
+        </h1>
+    </div>
+
+    <div class="spc-bottom-2 text-indent-3">
+      {{input type="text"
+              value=equation.user_input
+              name="game-answer"
+              class="form-control input-lg"
+              autofocus=true}}
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-success btn-block" {{action 'submit'}}>
+        Submit
+      </button>
+    </div>
+  </form>
 {{/mcim-struc}}

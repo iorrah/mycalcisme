@@ -9,7 +9,7 @@ Router.map(function() {
   this.route('index', { path: '/' });
   this.route('waiting');
   this.route('tldr');
-  this.route('game');
+  this.route('game', { path: 'game/:journey_id' });
 });
 
 export default Router;
