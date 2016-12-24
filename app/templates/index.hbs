@@ -2,23 +2,30 @@
   <div class="spc-bottom-2">
     <h1 class="text-center">Welcome to MyCalcIsMe!</h1>
   </div>
+
   <div class="spc-bottom-0">
     <p class="font-size-3 text-center">
       The game will start in
     </p>
   </div>
+
   <div class="spc-bottom-0">
-    <p class="font-size-8 text-center">{{timeToStart}}</p>
+    <p class="font-size-8 text-center">
+    {{timeRemaining.seconds}}
+    </p>
   </div>
+
   <div class="spc-bottom-2">
     <p class="font-size-3 text-center">seconds...</p>
   </div>
+
   <div class="row">
     <div class="col-sm-6">
-      {{#link-to 'game' classNames="btn btn-success btn-block"}}
+      {{#link-to 'game' 1 classNames="btn btn-success btn-block"}}
         I'm ready
       {{/link-to}}
     </div>
+
     <div class="col-sm-6">
       {{#link-to 'waiting' classNames="btn btn-info btn-block"}}
         Wait!
