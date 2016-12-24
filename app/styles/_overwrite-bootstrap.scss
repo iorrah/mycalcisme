@@ -1,4 +1,11 @@
 html {
   font-size: $html-font-size;
+
+  .input-lg {
+    height: auto;
+    font-size: 100px;
+    border-radius: $mcim-input-border-radius;
+    text-align: center;
+  }
 }
 
