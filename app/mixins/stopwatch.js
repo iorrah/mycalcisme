@@ -9,7 +9,7 @@ export default Ember.Mixin.create({
   timeRemaining,
 
   onInitStopwatch: (function() {
-    this.initializeClock(6000);
+    this.initializeClock(60000);
   }).on('init'),
 
   getTimeRemaining: function (endTime) {

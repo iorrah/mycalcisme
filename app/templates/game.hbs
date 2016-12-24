@@ -14,12 +14,15 @@
               value=equation.user_input
               name="game-answer"
               class="form-control input-lg"
-              autofocus=true}}
+              autofocus=true
+              autocomplete=false
+              required=true}}
     </div>
 
     <div class="text-center">
       <button class="btn btn-success btn-block" {{action 'submit'}}>
         Submit
+        <label class="label-in-btn label-in-btn-success">{{score}}</label>
       </button>
     </div>
   </form>

@@ -11,6 +11,6 @@ export default Ember.Controller.extend(StopwatchMixin, {
   }).observes('timeRemaining.seconds'),
 
   redirectToGamePage: function() {
-    this.transitionToRoute('game');
+    this.transitionToRoute('game', 1);
   }
 });

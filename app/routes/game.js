@@ -23,9 +23,7 @@ export default Ember.Route.extend({
     var equation = Ember.Object.create({
       operation: "+",
       user_input: null,
-
       operator_one: null,
-
       operator_two: null,
 
       equationToString: function() {
