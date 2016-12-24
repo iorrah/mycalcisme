@@ -3,7 +3,17 @@
   height: 100%;
   width: 100%;
   position: absolute;
+  transition: all 0.2s;
   background-color: $mcim-blue-1;
+
+  &.mcim-struc-table-success {
+    background-color: $mcim-green-1;
+  }
+
+  &.mcim-struc-table-danger {
+    background-color: $mcim-red-1;
+  }
+
 
   .mcim-struc-row {
     display: table-row;
@@ -18,7 +28,7 @@
 
         .mcim-struc-box {
           width: 100%;
-          max-width: 500px;
+          max-width: 450px;
           background-color: $mcim-grey-1;
           padding: 30px;
           border: 1px solid $mcim-grey-2;
