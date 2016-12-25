@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Mixin.create({
   toggleClassEffect: function(classToToggle) {
-    var elem = $('.mcim-struc-table');
+    var elem = Ember.$('.mcim-struc-table');
     elem.addClass(classToToggle);
 
     setTimeout(function() {

@@ -36,8 +36,9 @@ export default Ember.Mixin.create({
       var t = _this.getTimeRemaining(endTime);
       _this.set('timeRemaining', t);
 
-      if (t.total <= 0)
+      if (t.total <= 0) {
         clearInterval(timeInterval);
+      }
     }, 1000);
   }
 });

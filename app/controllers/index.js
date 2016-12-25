@@ -7,7 +7,9 @@ export default Ember.Controller.extend(StopwatchMixin, {
   timeToStart,
 
   observesTimeRemaining: (function() {
-    if (this.timeRemaining.seconds == 0) this.redirectToGamePage();
+    if (this.timeRemaining.seconds === 0) {
+      this.redirectToGamePage();
+    }
   }).observes('timeRemaining.seconds'),
 
   redirectToGamePage: function() {
