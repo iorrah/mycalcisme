@@ -19,6 +19,16 @@ export default Ember.Route.extend({
     return Math.floor((Math.random() * rangeLimit) + rangeStartsAt);
   },
 
+  generateOperation: function(rangeStartsAt, rangeLimit) {
+    var operations = ["+", "-", "*", "/"];
+    var operatorIndex = this.getRandom(0, 3);
+    return operations[operatorIndex];
+  },
+
+  generateOperator: function() {
+    return this.getRandom(1, 10);
+  },
+
   buildEquationObj: function() {
     var equation = Ember.Object.create({
       operation: "+",
@@ -29,8 +39,9 @@ export default Ember.Route.extend({
       is_correct_result: null
     });
 
-    equation.set('operator_one', this.getRandom(1, 10));
-    equation.set('operator_two', this.getRandom(1, 10));
+    equation.set('operation', this.generateOperation());
+    equation.set('operator_one', this.generateOperator());
+    equation.set('operator_two', this.generateOperator());
 
     return equation;
   }
