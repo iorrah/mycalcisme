@@ -15,8 +15,8 @@ export default Ember.Route.extend({
     return this.buildEquationObj();
   },
 
-  getRandom: function() {
-    return parseInt(Math.random() * 5);
+  getRandom: function(rangeStartsAt, rangeLimit) {
+    return Math.floor((Math.random() * rangeLimit) + rangeStartsAt);
   },
 
   buildEquationObj: function() {
@@ -41,8 +41,8 @@ export default Ember.Route.extend({
       }
     });
 
-    equation.set('operator_one', this.getRandom());
-    equation.set('operator_two', this.getRandom());
+    equation.set('operator_one', this.getRandom(1, 10));
+    equation.set('operator_two', this.getRandom(1, 10));
 
     return equation;
   }
