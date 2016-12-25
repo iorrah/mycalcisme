@@ -39,7 +39,15 @@ export default Ember.Controller.extend(MCIModesMixin, EquationHistoricMixin, {
     this.set('equation.to_str', equationToStr);
   },
 
-  observesEquationToString: (function() {
+  calcEquationSolution: function() {
+    return eval(this.get('equation.to_str'));
+  },
+
+  isUserInputCorrect: function() {
+    return this.calcEquationSolution() == this.get('equation.user_input');
+  },
+
+  observesEquationOperationals: (function() {
     var equationToStr = this.buildEquationToStr();
     this.setEquationToStr(equationToStr);
   }).observes(
@@ -51,10 +59,13 @@ export default Ember.Controller.extend(MCIModesMixin, EquationHistoricMixin, {
   actions: {
     submit: function() {
       var equation = this.get('equation');
+      var isUserInputCorrect = this.isUserInputCorrect();
+      equation.set('is_correct_result', isUserInputCorrect);
+
       this.addEquationInHistoric(equation);
 
       if (equation.user_input) {
-        if (equation.is_correct_result()) {
+        if (isUserInputCorrect) {
           this.send('treatCorrectUserResult');
         } else {
           this.send('treatIncorrectUserResult');

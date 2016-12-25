@@ -25,16 +25,8 @@ export default Ember.Route.extend({
       user_input: null,
       operator_one: null,
       operator_two: null,
-
-      equationToString: null,
-
-      calcCorrectResult: function() {
-        return eval(this.get('to_str'));
-      },
-
-      is_correct_result: function() {
-        return this.calcCorrectResult() == this.get('user_input');
-      }
+      to_str: null,
+      is_correct_result: null
     });
 
     equation.set('operator_one', this.getRandom(1, 10));
