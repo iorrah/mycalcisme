@@ -24,6 +24,30 @@ export default Ember.Controller.extend(MCIModesMixin, EquationHistoricMixin, {
     this.set('score', this.get('score') - 1);
   },
 
+  buildEquationToStr: function() {
+    var equation = this.get('equation');
+
+    var equationToStr = equation.get('operator_one') + " " +
+                        equation.get('operation')    + " " +
+                        equation.get('operator_two');
+
+    return equationToStr;
+  },
+
+  setEquationToStr: function(equationToStr) {
+    var equation = this.get('equation');
+    this.set('equation.to_str', equationToStr);
+  },
+
+  observesEquationToString: (function() {
+    var equationToStr = this.buildEquationToStr();
+    this.setEquationToStr(equationToStr);
+  }).observes(
+    'equation.operator_one',
+    'equation.operation',
+    'equation.operator_two'
+  ),
+
   actions: {
     submit: function() {
       var equation = this.get('equation');

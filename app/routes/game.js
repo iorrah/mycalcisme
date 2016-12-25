@@ -26,14 +26,10 @@ export default Ember.Route.extend({
       operator_one: null,
       operator_two: null,
 
-      equationToString: function() {
-        return (this.operator_one) + " " +
-               (this.operation) + " " +
-               (this.operator_two);
-      },
+      equationToString: null,
 
       calcCorrectResult: function() {
-        return eval(this.equationToString());
+        return eval(this.get('to_str'));
       },
 
       is_correct_result: function() {

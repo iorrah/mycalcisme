@@ -16,7 +16,9 @@ export default Ember.Mixin.create({
     historicEquation.set('operator_one', equation.get('operator_one'));
     historicEquation.set('operator_two', equation.get('operator_two'));
 
-    historicEquation.set('equationToString', equation.equationToString());
+    historicEquation.set('operator_two', equation.get('to_str'));
+
+    // historicEquation.set('equationToString', equation.equationToString());
     historicEquation.set('calcCorrectResult', equation.calcCorrectResult());
     historicEquation.set('is_correct_result', equation.is_correct_result());
 
