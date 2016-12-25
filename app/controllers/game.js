@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import MCIModesMixin from '../mixins/mcim-modes';
+import EquationHistoricMixin from '../mixins/equation-historic';
 
-export default Ember.Controller.extend(MCIModesMixin, {
+export default Ember.Controller.extend(MCIModesMixin, EquationHistoricMixin, {
   journey_id: 0,
   score: 0,
 
@@ -26,6 +27,7 @@ export default Ember.Controller.extend(MCIModesMixin, {
   actions: {
     submit: function() {
       var equation = this.get('equation');
+      this.addEquationInHistoric(equation);
 
       if (equation.user_input) {
         if (equation.is_correct_result()) {
