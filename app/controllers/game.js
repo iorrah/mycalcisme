@@ -47,6 +47,27 @@ export default Ember.Controller.extend(MCIModesMixin, EquationHistoricMixin, {
     return this.calcEquationSolution() == this.get('equation.user_input');
   },
 
+  getValidatedUserInput: function(userInput) {
+    var input = userInput || "";
+
+    if (this.isSimplyValid(input)) {
+      input = String(input);
+      input = input.trim();
+      input = input.length ? input : null;
+
+      if (this.isSimplyValid(input)) {
+        input = input * 1;
+        input = !isNaN(input) ? input : null;
+      }
+    }
+
+    return input;
+  },
+
+  isSimplyValid: function(value) {
+    return (value !== null && value !== undefined);
+  },
+
   observesEquationOperationals: (function() {
     var equationToStr = this.buildEquationToStr();
     this.setEquationToStr(equationToStr);
@@ -59,12 +80,12 @@ export default Ember.Controller.extend(MCIModesMixin, EquationHistoricMixin, {
   actions: {
     submit: function() {
       var equation = this.get('equation');
+      var userInput = this.getValidatedUserInput(equation.user_input);
       var isUserInputCorrect = this.isUserInputCorrect();
       equation.set('is_correct_result', isUserInputCorrect);
-
       this.addEquationInHistoric(equation);
 
-      if (equation.user_input) {
+      if (this.isSimplyValid(userInput)) {
         if (isUserInputCorrect) {
           this.send('treatCorrectUserResult');
         } else {
