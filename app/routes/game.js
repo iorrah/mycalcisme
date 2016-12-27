@@ -21,7 +21,7 @@ export default Ember.Route.extend({
 
   generateOperation: function(rangeStartsAt, rangeLimit) {
     var operations = ["+", "-", "*", "/"];
-    var operatorIndex = this.getRandom(0, 3);
+    var operatorIndex = this.getRandom(1, 3);
     return operations[operatorIndex];
   },
 
