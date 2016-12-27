@@ -20,20 +20,70 @@ export default Ember.Route.extend({
     return Math.floor((Math.random() * rangeLimit) + rangeStartsAt);
   },
 
-  generateOperation: function() {
+  getRandomOperation: function() {
     var operations = Constants.OPERATIONS;
     var operatorIndex = this.getRandom(1, Constants.OPERATIONS_INDEX_LENGTH);
-    return operations[operatorIndex];
+    return operations[0];
   },
 
-  generateOperator: function() {
-    return this.getRandom(1, Constants.OPERATORS_RANGE_LIMIT);
+  getRandomOperator: function(definedLimit) {
+    return this.getRandom(1, definedLimit || Constants.OPERATORS_RANGE_LIMIT);
+  },
+
+  getRandomOperatorOne: function() {
+    return this.getRandomOperator();
+  },
+
+  capitalize: function(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  },
+
+  getRandomOperatorTwo: function(operation, operatorOne) {
+    var operatorRangeLimit = 0;
+    var methodName = "getRandomOperatorTwoFor";
+    methodName += this.capitalize(operation.abbr);
+    var randomOperatorTwo = this[methodName](operatorOne);
+
+    return randomOperatorTwo;
+  },
+
+  getRandomOperatorTwoForSub: function(operatorOne) {
+    return this.getRandomOperator(operatorOne);
+  },
+
+  getRandomOperatorTwoForAdd: function(operatorOne) {
+    return this.getRandomOperatorOne();
+  },
+
+  getRandomOperatorTwoForMul: function(operatorOne) {
+    return this.getRandomOperatorOne();
+  },
+
+  getRandomOperatorTwoForDiv: function(operatorOne) {
+    var divisor = 0;
+    var dividend = operatorOne;
+    var options = [1, "itself"];
+    var indexChoosenOption = 0;
+    var choosenOption = "";
+
+    indexChoosenOption = this.getRandom(1, options.length - 1);
+    choosenOption = options[indexChoosenOption];
+
+    if (choosenOption == "itself") {
+      choosenOption = operatorOne;
+    }
+
+    return choosenOption;
   },
 
   setOperationalValues: function(equation) {
-    equation.set('operation', this.generateOperation());
-    equation.set('operator_one', this.generateOperator());
-    equation.set('operator_two', this.generateOperator());
+    var operation =   this.getRandomOperation();
+    var operatorOne = this.getRandomOperatorOne();
+    var operatorTwo = this.getRandomOperatorTwo(operation, operatorOne);
+
+    equation.set('operation',    operation);
+    equation.set('operator_one', operatorOne);
+    equation.set('operator_two', operatorTwo);
 
     return equation;
   },

@@ -27,8 +27,8 @@ export default Ember.Controller.extend(MCIModesMixin, EquationHistoricMixin, {
   buildEquationToStr: function() {
     var equation = this.get('equation');
 
-    var equationToStr = equation.get('operator_one') + " " +
-                        equation.get('operation')    + " " +
+    var equationToStr = equation.get('operator_one')     + " " +
+                        equation.get('operation.symbol') + " " +
                         equation.get('operator_two');
 
     return equationToStr;
