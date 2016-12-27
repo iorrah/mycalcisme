@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Constants from 'mycalcisme/constants';
 
 export default Ember.Route.extend({
   model: function() {
@@ -20,18 +21,26 @@ export default Ember.Route.extend({
   },
 
   generateOperation: function() {
-    var operations = ["+", "-", "*", "/"];
-    var operatorIndex = this.getRandom(1, 3);
+    var operations = Constants.OPERATIONS;
+    var operatorIndex = this.getRandom(1, Constants.OPERATIONS_INDEX_LENGTH);
     return operations[operatorIndex];
   },
 
   generateOperator: function() {
-    return this.getRandom(1, 10);
+    return this.getRandom(1, Constants.OPERATORS_RANGE_LIMIT);
+  },
+
+  setOperationalValues: function(equation) {
+    equation.set('operation', this.generateOperation());
+    equation.set('operator_one', this.generateOperator());
+    equation.set('operator_two', this.generateOperator());
+
+    return equation;
   },
 
   buildEquationObj: function() {
     var equation = Ember.Object.create({
-      operation: "+",
+      operation: null,
       user_input: null,
       operator_one: null,
       operator_two: null,
@@ -39,9 +48,7 @@ export default Ember.Route.extend({
       is_correct_result: null
     });
 
-    equation.set('operation', this.generateOperation());
-    equation.set('operator_one', this.generateOperator());
-    equation.set('operator_two', this.generateOperator());
+    equation = this.setOperationalValues(equation);
 
     return equation;
   }
