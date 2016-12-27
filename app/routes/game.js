@@ -11,7 +11,7 @@ export default Ember.Route.extend({
     controller.set('journey_id', transition.params.game.journey_id);
   },
 
-  getEquationObj: function(level = null) {
+  getEquationObj: function() {
     return this.buildEquationObj();
   },
 
@@ -19,7 +19,7 @@ export default Ember.Route.extend({
     return Math.floor((Math.random() * rangeLimit) + rangeStartsAt);
   },
 
-  generateOperation: function(rangeStartsAt, rangeLimit) {
+  generateOperation: function() {
     var operations = ["+", "-", "*", "/"];
     var operatorIndex = this.getRandom(1, 3);
     return operations[operatorIndex];
