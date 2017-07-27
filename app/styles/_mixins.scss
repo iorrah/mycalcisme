@@ -133,3 +133,13 @@
 @function calculateSpacing($spacing) {
   @return $spacing * $spacing-base;
 }
+
+@mixin font-family($id) {
+  @if ($id == 1) {
+    font-family: $font-family-1;
+    font-family: $font-family-1;
+  } @elseif ($id == 2) {
+    font-family: $font-family-2;
+    font-family: $font-family-2;
+  }
+}
