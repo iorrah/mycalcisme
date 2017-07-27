@@ -3,9 +3,6 @@ import Ember from 'ember';
 let timeRemaining = null;
 
 export default Ember.Mixin.create({
-
-  // https://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/
-
   timeRemaining,
 
   onInitStopwatch: (function() {
