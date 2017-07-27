@@ -23,6 +23,7 @@ export default Ember.Route.extend({
   getRandomOperation: function() {
     var operations = Constants.OPERATIONS;
     var operatorIndex = this.getRandom(1, Constants.OPERATIONS_INDEX_LENGTH);
+    // return operations[operatorIndex];
     return operations[0];
   },
 
@@ -59,6 +60,14 @@ export default Ember.Route.extend({
     return this.getRandomOperatorOne();
   },
 
+  // isCompositeNumber: function(operatorOne) {
+  //   return something;
+  // },
+
+  // findCompositeNumberDivisor: function(operatorOne) {
+  //   return something;
+  // },
+
   getRandomOperatorTwoForDiv: function(operatorOne) {
     var divisor = 0;
     var dividend = operatorOne;
@@ -66,12 +75,26 @@ export default Ember.Route.extend({
     var indexChoosenOption = 0;
     var choosenOption = "";
 
+    // http://www.mathgoodies.com/lessons/vol3/divisibility.html
+
+    // if (this.isCompositeNumber(dividend)) {
+    //   find a third factor
+    //    ...
+
+    //   and push to the array
+    //   options.push("divisible");
+    // }
+
     indexChoosenOption = this.getRandom(1, options.length - 1);
     choosenOption = options[indexChoosenOption];
 
     if (choosenOption == "itself") {
       choosenOption = operatorOne;
     }
+
+    // } else if (choosenOption == "divisible") {
+    //   choosenOption = this.findCompositeNumberDivisor(operatorOne);
+    // }
 
     return choosenOption;
   },
