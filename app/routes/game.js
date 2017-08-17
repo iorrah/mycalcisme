@@ -23,8 +23,7 @@ export default Ember.Route.extend({
   getRandomOperation: function() {
     var operations = Constants.OPERATIONS;
     var operatorIndex = this.getRandom(1, Constants.OPERATIONS_INDEX_LENGTH);
-    // return operations[operatorIndex];
-    return operations[0];
+    return operations[operatorIndex];
   },
 
   getRandomOperator: function(definedLimit) {
