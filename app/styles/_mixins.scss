@@ -141,5 +141,8 @@
   } @elseif ($id == 2) {
     font-family: $font-family-2;
     font-family: $font-family-2;
+  } @elseif ($id == 3) {
+    font-family: $font-family-3;
+    font-family: $font-family-3;
   }
 }

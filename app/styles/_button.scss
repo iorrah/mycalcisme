@@ -1,12 +1,20 @@
 .btn {
   @include border-radius($mcim-btn-border-radius);
-  padding: 13px 5px;
+  border-width: 0;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 15px 5px;
+  text-transform: uppercase;
+
+  &.btn-success,
+  &.btn-info {
+    @include font-family(3);
+    @include font-size(1.5);
+    color: #fff;
+  }
 
   &.btn-success {
     background-color: $mcim-green-1;
-    border-color: $mcim-green-2;
-    color: #fff;
-    font-size: 18px;
 
     &:hover {
       background-color: $mcim-green-3;
@@ -15,9 +23,6 @@
 
   &.btn-info {
     background-color: $mcim-blue-1;
-    border-color: $mcim-blue-2;
-    color: #fff;
-    font-size: 18px;
 
     &:hover {
       background-color: $mcim-blue-3;

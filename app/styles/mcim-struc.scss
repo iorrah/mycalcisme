@@ -28,10 +28,10 @@
 
         .mcim-struc-box {
           width: 100%;
-          max-width: 450px;
+          max-width: 529px;
           background-color: $mcim-grey-1;
-          padding: 30px;
-          border: 1px solid $mcim-grey-2;
+          padding: 65px 77px 58px;
+          border: 0;
           @include border-radius($mcim-box-border-radius);
           @include center-block;
         }
