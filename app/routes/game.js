@@ -22,7 +22,8 @@ export default Ember.Route.extend({
 
   getRandomOperation: function() {
     var operations = Constants.OPERATIONS;
-    var operatorIndex = this.getRandom(1, Constants.OPERATIONS_INDEX_LENGTH);
+    var rangeLimit = Constants.OPERATIONS_INDEX_LENGTH + 1;
+    var operatorIndex = this.getRandom(0, rangeLimit);
     return operations[operatorIndex];
   },
 
@@ -34,17 +35,10 @@ export default Ember.Route.extend({
     return this.getRandomOperator();
   },
 
-  capitalize: function(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  },
-
   getRandomOperatorTwo: function(operation, operatorOne) {
-    var operatorRangeLimit = 0;
     var methodName = "getRandomOperatorTwoFor";
-    methodName += this.capitalize(operation.abbr);
-    var randomOperatorTwo = this[methodName](operatorOne);
-
-    return randomOperatorTwo;
+    methodName += Ember.String.capitalize(operation.abbr);
+    return this[methodName](operatorOne);
   },
 
   getRandomOperatorTwoForSub: function(operatorOne) {
@@ -52,11 +46,11 @@ export default Ember.Route.extend({
   },
 
   getRandomOperatorTwoForAdd: function(operatorOne) {
-    return this.getRandomOperatorOne();
+    return this.getRandomOperator();
   },
 
   getRandomOperatorTwoForMul: function(operatorOne) {
-    return this.getRandomOperatorOne();
+    return this.getRandomOperator();
   },
 
   // isCompositeNumber: function(operatorOne) {
@@ -70,7 +64,7 @@ export default Ember.Route.extend({
   getRandomOperatorTwoForDiv: function(operatorOne) {
     var divisor = 0;
     var dividend = operatorOne;
-    var options = [1, "itself"];
+    var options = [1, dividend];
     var indexChoosenOption = 0;
     var choosenOption = "";
 
@@ -81,17 +75,13 @@ export default Ember.Route.extend({
     //    ...
 
     //   and push to the array
-    //   options.push("divisible");
+    //   options.push('divisible');
     // }
 
-    indexChoosenOption = this.getRandom(1, options.length - 1);
+    indexChoosenOption = this.getRandom(0, options.length - 1);
     choosenOption = options[indexChoosenOption];
 
-    if (choosenOption == "itself") {
-      choosenOption = operatorOne;
-    }
-
-    // } else if (choosenOption == "divisible") {
+    // if (choosenOption == 'divisible') {
     //   choosenOption = this.findCompositeNumberDivisor(operatorOne);
     // }
 
@@ -110,8 +100,8 @@ export default Ember.Route.extend({
     return equation;
   },
 
-  buildEquationObj: function() {
-    var equation = Ember.Object.create({
+  getDefaultEquationObj: function() {
+    return Ember.Object.create({
       operation: null,
       user_input: null,
       operator_one: null,
@@ -119,9 +109,10 @@ export default Ember.Route.extend({
       to_str: null,
       is_correct_result: null
     });
+  },
 
-    equation = this.setOperationalValues(equation);
-
-    return equation;
+  buildEquationObj: function() {
+    var equation = this.getDefaultEquationObj();
+    return this.setOperationalValues(equation);
   }
 });
